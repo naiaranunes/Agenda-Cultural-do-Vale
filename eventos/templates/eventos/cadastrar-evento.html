@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventos</title>
+</head>
+<body>
+    <h1>Página de cadastro de eventos</h1>
+      <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="username">Nome do Evento</label>
+                    <input type="text"id="eventoname" name="eventoname" placeholder="Digite o nome do evento" required>
+                </div>
+                <div>
+                    <label for="local">Local</label>
+                    <input type="text" id="local" name="local" placeholder="Digite o local do evento" required>
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+</body>
+</html>
