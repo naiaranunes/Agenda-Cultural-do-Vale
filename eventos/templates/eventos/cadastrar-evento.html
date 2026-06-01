@@ -6,18 +6,50 @@
     <title>eventos</title>
 </head>
 <body>
-    <h1>Página de cadastro de eventos</h1>
-      <form action="" method="POST">
-                {% csrf_token %}
-                <div>
-                    <label for="username">Nome do Evento</label>
-                    <input type="text"id="eventoname" name="eventoname" placeholder="Digite o nome do evento" required>
-                </div>
-                <div>
-                    <label for="local">Local</label>
-                    <input type="text" id="local" name="local" placeholder="Digite o local do evento" required>
-                </div>
-                <button type="submit">Entrar</button>
-            </form>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Evento</title>
+</head>
+<body>
+
+    <h1>Cadastrar Evento</h1>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <label for="titulo">Título do Evento:</label><br>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+
+        <label for="descricao">Descrição:</label><br>
+        <textarea id="descricao" name="descricao" rows="5" required></textarea><br><br>
+
+        <label for="data">Data:</label><br>
+        <input type="date" id="data" name="data" required><br><br>
+
+        <label for="horario">Horário:</label><br>
+        <input type="time" id="horario" name="horario" required><br><br>
+
+        <label for="local">Local:</label><br>
+        <input type="text" id="local" name="local" required><br><br>
+
+        <label for="categoria">Categoria:</label><br>
+        <select id="categoria" name="categoria">
+            <option value="cultura">Cultura</option>
+            <option value="esporte">Esporte</option>
+            <option value="educacao">Educação</option>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="outros">Outros</option>
+        </select><br><br>
+
+        <label for="imagem">Imagem do Evento:</label><br>
+        <input type="file" id="imagem" name="imagem"><br><br>
+
+        <button type="submit">Cadastrar Evento</button>
+
+    </form>
+
+</body>
+</html>
 </body>
 </html>
