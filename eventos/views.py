@@ -1,31 +1,82 @@
-from django.shortcuts import redirect, render
-from .forms import EventoForm
-def home(request):
-    return render(request, 'home.html')
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Evento
 
-def cadastrar_evento(request):
+
+@login_required
+def criar_evento(request):
 
     if request.method == 'POST':
-        print("CHEGOU NO POST")
 
-        form = EventoForm(request.POST, request.FILES)
+        Evento.objects.create(
+            titulo=request.POST.get('titulo'),
+            descricao=request.POST.get('descricao'),
+            local=request.POST.get('local'),
+            data=request.POST.get('data'),
+            categoria=request.POST.get('categoria'),
+            imagem=request.FILES.get('imagem'),
+            usuario=request.user
+        )
 
-        if form.is_valid():
-            print("FORMULÁRIO VÁLIDO")
-            form.save()
-            return redirect('listar_eventos')
-        else:
-            print(form.errors)
+        return redirect('meus_eventos')
 
-    else:
-        form = EventoForm()
+    return render(request, 'eventos/criar_evento.html')
+
+
+@login_required
+def meus_eventos(request):
+
+    eventos = Evento.objects.filter(
+        usuario=request.user
+    )
 
     return render(
         request,
-        'eventos/cadastrar-evento.html',
-        {'form': form}
+        'eventos/meus_eventos.html',
+        {'eventos': eventos}
     )
 
-def listar_eventos(request):
-     return render(request, 'eventos/listar-evento.html')
 
+@login_required
+def editar_evento(request, id):
+
+    evento = Evento.objects.get(id=id)
+
+    # impede que um usuário edite evento de outro
+    if evento.usuario != request.user:
+        return redirect('meus_eventos')
+
+    if request.method == 'POST':
+
+        evento.titulo = request.POST.get('titulo')
+        evento.descricao = request.POST.get('descricao')
+        evento.local = request.POST.get('local')
+        evento.data = request.POST.get('data')
+        evento.categoria = request.POST.get('categoria')
+
+        if request.FILES.get('imagem'):
+            evento.imagem = request.FILES.get('imagem')
+
+        evento.save()
+
+        return redirect('meus_eventos')
+
+    return render(
+        request,
+        'eventos/editar_evento.html',
+        {'evento': evento}
+    )
+
+
+@login_required
+def excluir_evento(request, id):
+
+    evento = Evento.objects.get(id=id)
+
+    # impede que um usuário exclua evento de outro
+    if evento.usuario != request.user:
+        return redirect('meus_eventos')
+
+    evento.delete()
+
+    return redirect('meus_eventos')

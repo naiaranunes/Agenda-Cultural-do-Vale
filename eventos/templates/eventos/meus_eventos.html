@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Agenda Cultural do Velho Chico</title>
+    <title>Meus Eventos</title>
 </head>
 <body>
 
-    <h1>Agenda Cultural do Velho Chico</h1>
+    <h1>Meus Eventos</h1>
 
-    <a href="{% url 'login' %}">
-        Entrar
-    </a>
-
-    <a href="{% url 'cadastro' %}">
-        Cadastre-se
+    <a href="{% url 'criar_evento' %}">
+        Novo Evento
     </a>
 
     <hr>
 
-    <h2>Eventos Cadastrados</h2>
-
     {% for evento in eventos %}
 
-        <h3>{{ evento.titulo }}</h3>
+        <h2>{{ evento.titulo }}</h2>
 
         {% if evento.imagem %}
             <img
@@ -49,11 +43,19 @@
             {{ evento.descricao }}
         </p>
 
+        <a href="{% url 'editar_evento' evento.id %}">
+            Editar
+        </a>
+
+        <a href="{% url 'excluir_evento' evento.id %}">
+            Excluir
+        </a>
+
         <hr>
 
     {% empty %}
 
-        <p>Nenhum evento cadastrado.</p>
+        <p>Você ainda não cadastrou nenhum evento.</p>
 
     {% endfor %}
 

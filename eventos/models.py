@@ -1,23 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Evento(models.Model):
 
     CATEGORIAS = [
-        ('cultura', 'Cultura'),
-        ('esporte', 'Esporte'),
-        ('educacao', 'Educação'),
-        ('tecnologia', 'Tecnologia'),
-        ('musica', 'Música'),
-        ('teatro', 'Teatro'),
-        ('gastronomia', 'Gastronomia'),
-        ('outros', 'Outros'),
+        ('SHOW', 'Show'),
+        ('FEIRA', 'Feira'),
+        ('TEATRO', 'Teatro'),
+        ('EXPOSICAO', 'Exposição'),
+        ('RELIGIOSO', 'Religioso'),
+        ('OUTRO', 'Outro')
     ]
 
-    titulo = models.CharField(max_length=200)
+    titulo = models.CharField(max_length=100)
+
     descricao = models.TextField()
+
+    local = models.CharField(max_length=150)
+
     data = models.DateField()
-    horario = models.TimeField()
-    local = models.CharField(max_length=200)
 
     categoria = models.CharField(
         max_length=20,
@@ -28,6 +29,11 @@ class Evento(models.Model):
         upload_to='eventos/',
         blank=True,
         null=True
+    )
+
+    usuario = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
     )
 
     def __str__(self):

@@ -1,0 +1,17 @@
+<h1>Olá, {{ user.username }}</h1>
+
+<a href="{% url 'criar_evento' %}">
+    Cadastrar Evento
+</a>
+
+<br><br>
+
+<a href="{% url 'meus_eventos' %}">
+    Meus Eventos
+</a>
+
+<br><br>
+
+<a href="{% url 'logout' %}">
+    Sair
+</a>

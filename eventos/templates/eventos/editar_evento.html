@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Evento</title>
+</head>
+<body>
+
+    <h1>Editar Evento</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Título</label>
+        <br>
+        <input
+            type="text"
+            name="titulo"
+            value="{{ evento.titulo }}"
+        >
+
+        <br><br>
+
+        <label>Descrição</label>
+        <br>
+        <textarea name="descricao">{{ evento.descricao }}</textarea>
+
+        <br><br>
+
+        <label>Local</label>
+        <br>
+        <input
+            type="text"
+            name="local"
+            value="{{ evento.local }}"
+        >
+
+        <br><br>
+
+        <label>Data</label>
+        <br>
+        <input
+            type="date"
+            name="data"
+            value="{{ evento.data|date:'Y-m-d' }}"
+        >
+
+        <br><br>
+
+        <label>Categoria</label>
+        <br>
+
+        <select name="categoria">
+
+            <option value="SHOW"
+                {% if evento.categoria == 'SHOW' %}selected{% endif %}>
+                Show
+            </option>
+
+            <option value="FEIRA"
+                {% if evento.categoria == 'FEIRA' %}selected{% endif %}>
+                Feira
+            </option>
+
+            <option value="TEATRO"
+                {% if evento.categoria == 'TEATRO' %}selected{% endif %}>
+                Teatro
+            </option>
+
+            <option value="EXPOSICAO"
+                {% if evento.categoria == 'EXPOSICAO' %}selected{% endif %}>
+                Exposição
+            </option>
+
+            <option value="RELIGIOSO"
+                {% if evento.categoria == 'RELIGIOSO' %}selected{% endif %}>
+                Religioso
+            </option>
+
+            <option value="OUTRO"
+                {% if evento.categoria == 'OUTRO' %}selected{% endif %}>
+                Outro
+            </option>
+
+        </select>
+
+        <br><br>
+
+        {% if evento.imagem %}
+            <p>Imagem atual:</p>
+            <img
+                src="{{ evento.imagem.url }}"
+                width="250"
+            >
+        {% endif %}
+
+        <br><br>
+
+        <label>Nova Imagem</label>
+        <br>
+        <input type="file" name="imagem">
+
+        <br><br>
+
+        <button type="submit">
+            Atualizar Evento
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'meus_eventos' %}">
+        Voltar
+    </a>
+
+</body>
+</html>
