@@ -182,26 +182,7 @@ O sistema possui upload de imagens nos eventos. Por isso, é necessário instala
 ```bash
 pip install pillow
 ```
-
-### Configuração de mídia
-
-No arquivo `settings.py`, o projeto deve possuir a configuração de arquivos de mídia:
-
-```python
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 ```
-
-No arquivo principal de URLs do projeto, deve existir a configuração para servir arquivos de mídia em ambiente de desenvolvimento:
-
-```python
-from django.conf import settings
-from django.conf.urls.static import static
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-```
-
 ### Criação do administrador
 
 Para utilizar as funcionalidades administrativas, é necessário criar um superusuário:
