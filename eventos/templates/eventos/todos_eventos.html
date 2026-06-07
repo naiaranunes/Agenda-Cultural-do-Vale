@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Eventos</title>
+    <title>Todos os Eventos</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/meus_eventos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/todos_eventos.css' %}">
 </head>
 <body>
 
@@ -18,20 +18,19 @@
         </h1>
 
         <h2 class="subtitulo">
-            Meus Eventos
+            Todos os Eventos Cadastrados
         </h2>
 
-        <div class="acoes">
-            <a href="{% url 'home' %}" class="btn btn-secondary">
+        <div class="text-center mb-4">
+
+            <a href="{% url 'home' %}"
+               class="btn btn-home">
                 Voltar para Home
             </a>
 
-            <a href="{% url 'criar_evento' %}" class="btn btn-personalizado">
-                Novo Evento
-            </a>
         </div>
 
-        <div class="row mt-4">
+        <div class="row">
 
             {% for evento in eventos %}
 
@@ -52,6 +51,11 @@
                             <h4>{{ evento.titulo }}</h4>
 
                             <p>
+                                <strong>Criado por:</strong>
+                                {{ evento.usuario.username }}
+                            </p>
+
+                            <p>
                                 <strong>Categoria:</strong>
                                 {{ evento.categoria }}
                             </p>
@@ -70,23 +74,17 @@
                                 {{ evento.descricao }}
                             </p>
 
-                        </div>
+                            <div class="card-footer">
 
-                        <div class="card-footer">
-
-                            <a
-                                href="{% url 'editar_evento' evento.id %}"
-                                class="btn btn-warning"
-                            >
+                            <a href="{% url 'editar_evento' evento.id %}" class="btn btn-warning">
                                 Editar
                             </a>
 
-                            <a
-                                href="{% url 'excluir_evento' evento.id %}"
-                                class="btn btn-danger"
-                            >
+                            <a href="{% url 'excluir_evento' evento.id %}" class="btn btn-danger">
                                 Excluir
                             </a>
+
+                        </div>
 
                         </div>
 
@@ -97,7 +95,7 @@
             {% empty %}
 
                 <div class="alert alert-info">
-                    Você ainda não cadastrou nenhum evento.
+                    Nenhum evento cadastrado.
                 </div>
 
             {% endfor %}

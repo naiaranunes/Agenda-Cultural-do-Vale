@@ -1,0 +1,39 @@
+body{
+    background-color: #e9f2f2;
+}
+
+.titulo{
+    text-align: center;
+    color: #7BA9A8;
+    margin-bottom: 10px;
+}
+
+.subtitulo{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.acoes{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-personalizado{
+    background-color: #7BA9A8;
+    color: white;
+}
+
+.btn-personalizado:hover{
+    background-color: #5e8e8d;
+    color: white;
+}
+
+.card-img-top{
+    height: 250px;
+    object-fit: cover;
+}
+
+.card{
+    border: none;
+}

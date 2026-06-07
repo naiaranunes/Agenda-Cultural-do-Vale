@@ -1,45 +1,80 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Evento</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/criar_evento.css' %}">
 </head>
 <body>
 
-    <h1>Cadastrar Evento</h1>
+    <div class="evento-container">
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+        <div class="evento-card">
 
-        <label>Título</label><br>
-        <input type="text" name="titulo"><br><br>
+            <h1>Agenda Cultural do Vale</h1>
 
-        <label>Descrição</label><br>
-        <textarea name="descricao"></textarea><br><br>
+            <h3>Cadastrar Evento</h3>
 
-        <label>Local</label><br>
-        <input type="text" name="local"><br><br>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
 
-        <label>Data</label><br>
-        <input type="date" name="data"><br><br>
+                <div class="mb-3">
+                    <label class="form-label">Título</label>
+                    <input type="text" name="titulo" class="form-control" required>
+                </div>
 
-        <label>Categoria</label><br>
-        <select name="categoria">
-            <option value="SHOW">Show</option>
-            <option value="FEIRA">Feira</option>
-            <option value="TEATRO">Teatro</option>
-            <option value="EXPOSICAO">Exposição</option>
-            <option value="RELIGIOSO">Religioso</option>
-            <option value="OUTRO">Outro</option>
-        </select><br><br>
+                <div class="mb-3">
+                    <label class="form-label">Descrição</label>
+                    <textarea name="descricao" class="form-control" rows="4" required></textarea>
+                </div>
 
-        <label>Imagem</label><br>
-        <input type="file" name="imagem"><br><br>
+                <div class="mb-3">
+                    <label class="form-label">Local</label>
+                    <input type="text" name="local" class="form-control" required>
+                </div>
 
-        <button type="submit">
-            Salvar Evento
-        </button>
+                <div class="mb-3">
+                    <label class="form-label">Data</label>
+                    <input type="date" name="data" class="form-control" required>
+                </div>
 
-    </form>
+                <div class="mb-3">
+                    <label class="form-label">Categoria</label>
+
+                    <select name="categoria" class="form-select">
+                        <option value="SHOW">Show</option>
+                        <option value="FEIRA">Feira</option>
+                        <option value="TEATRO">Teatro</option>
+                        <option value="EXPOSICAO">Exposição</option>
+                        <option value="RELIGIOSO">Religioso</option>
+                        <option value="OUTRO">Outro</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Imagem</label>
+                    <input type="file" name="imagem" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-evento">
+                    Salvar Evento
+                </button>
+
+            </form>
+
+            <div class="mt-4">
+                <a href="{% url 'home' %}">
+                    ← Voltar para Home
+                </a>
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
 </html>

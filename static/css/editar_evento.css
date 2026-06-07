@@ -1,0 +1,96 @@
+body{
+    background: #e9f2f2;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.evento-container{
+    width: 100%;
+    padding: 30px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.evento-card{
+    background: white;
+    width: 700px;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.15);
+}
+
+.evento-card h1{
+    color: #7BA9A8;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.evento-card h3{
+    text-align: center;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.form-label{
+    font-weight: bold;
+}
+
+.imagem-atual{
+    width: 100%;
+    max-width: 300px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+.btn-atualizar{
+    width: 100%;
+
+    background-color: #7BA9A8;
+    color: white;
+
+    font-weight: bold;
+}
+
+.btn-atualizar:hover{
+    background-color: #5e8e8d;
+    color: white;
+}
+
+.botoes{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.btn-voltar{
+    background-color: #7BA9A8;
+    color: white;
+}
+
+.btn-voltar:hover{
+    background-color: #5e8e8d;
+    color: white;
+}
+
+.btn-home{
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-home:hover{
+    background-color: #565e64;
+    color: white;
+}

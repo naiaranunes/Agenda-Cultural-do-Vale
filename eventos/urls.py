@@ -10,4 +10,7 @@ urlpatterns = [
     path('editar/<int:id>/',views.editar_evento, name='editar_evento'),
 
     path('excluir/<int:id>/',views.excluir_evento,name='excluir_evento'),
+    
+    path('todos-eventos/', views.todos_eventos, name='todos_eventos'),
 ]
+

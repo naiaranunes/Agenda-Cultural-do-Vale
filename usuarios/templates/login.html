@@ -1,22 +1,47 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="{% url 'login' %}" method="POST">{% csrf_token %}
 
-        <input type="text" name="username" placeholder="nome">
-        <br>
-        <br>
-        <input type="password" placeholder="senha"name="senha">
-        <br>
-        <br>
-        <input type="submit" value="Logar">
-    </form>
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <h1>Agenda Cultural do Vale</h1>
+
+            <h3>Login</h3>
+
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+
+                <input type="text" name="username" class="form-control" placeholder="Usuário">
+
+                <input type="password" name="senha" class="form-control" placeholder="Senha">
+
+                <button type="submit" class="btn btn-login">
+                    Entrar
+                </button>
+
+            </form>
+
+            <p>
+                Não possui conta?
+                <a href="{% url 'cadastro' %}">
+                    Cadastre-se
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
 </body>
 </html>
-

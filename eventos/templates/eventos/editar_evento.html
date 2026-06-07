@@ -1,118 +1,141 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Evento</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/editar_evento.css' %}">
 </head>
 <body>
 
-    <h1>Editar Evento</h1>
+    <div class="evento-container">
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+        <div class="evento-card">
 
-        <label>Título</label>
-        <br>
-        <input
-            type="text"
-            name="titulo"
-            value="{{ evento.titulo }}"
-        >
+            <h1>Agenda Cultural do Vale</h1>
 
-        <br><br>
+            <h3>Editar Evento</h3>
 
-        <label>Descrição</label>
-        <br>
-        <textarea name="descricao">{{ evento.descricao }}</textarea>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
 
-        <br><br>
+                <div class="mb-3">
+                    <label class="form-label">Título</label>
 
-        <label>Local</label>
-        <br>
-        <input
-            type="text"
-            name="local"
-            value="{{ evento.local }}"
-        >
+                    <input
+                        type="text"
+                        name="titulo"
+                        class="form-control"
+                        value="{{ evento.titulo }}"
+                    >
+                </div>
 
-        <br><br>
+                <div class="mb-3">
+                    <label class="form-label">Descrição</label>
 
-        <label>Data</label>
-        <br>
-        <input
-            type="date"
-            name="data"
-            value="{{ evento.data|date:'Y-m-d' }}"
-        >
+                    <textarea
+                        name="descricao"
+                        class="form-control"
+                        rows="4"
+                    >{{ evento.descricao }}</textarea>
+                </div>
 
-        <br><br>
+                <div class="mb-3">
+                    <label class="form-label">Local</label>
 
-        <label>Categoria</label>
-        <br>
+                    <input
+                        type="text"
+                        name="local"
+                        class="form-control"
+                        value="{{ evento.local }}"
+                    >
+                </div>
 
-        <select name="categoria">
+                <div class="mb-3">
+                    <label class="form-label">Data</label>
 
-            <option value="SHOW"
-                {% if evento.categoria == 'SHOW' %}selected{% endif %}>
-                Show
-            </option>
+                    <input
+                        type="date"
+                        name="data"
+                        class="form-control"
+                        value="{{ evento.data|date:'Y-m-d' }}"
+                    >
+                </div>
 
-            <option value="FEIRA"
-                {% if evento.categoria == 'FEIRA' %}selected{% endif %}>
-                Feira
-            </option>
+                <div class="mb-3">
+                    <label class="form-label">Categoria</label>
 
-            <option value="TEATRO"
-                {% if evento.categoria == 'TEATRO' %}selected{% endif %}>
-                Teatro
-            </option>
+                    <select name="categoria" class="form-select">
 
-            <option value="EXPOSICAO"
-                {% if evento.categoria == 'EXPOSICAO' %}selected{% endif %}>
-                Exposição
-            </option>
+                        <option value="SHOW" {% if evento.categoria == 'SHOW' %}selected{% endif %}>Show</option>
 
-            <option value="RELIGIOSO"
-                {% if evento.categoria == 'RELIGIOSO' %}selected{% endif %}>
-                Religioso
-            </option>
+                        <option value="FEIRA" {% if evento.categoria == 'FEIRA' %}selected{% endif %}>Feira</option>
 
-            <option value="OUTRO"
-                {% if evento.categoria == 'OUTRO' %}selected{% endif %}>
-                Outro
-            </option>
+                        <option value="TEATRO" {% if evento.categoria == 'TEATRO' %}selected{% endif %}>Teatro</option>
 
-        </select>
+                        <option value="EXPOSICAO" {% if evento.categoria == 'EXPOSICAO' %}selected{% endif %}>Exposição</option>
 
-        <br><br>
+                        <option value="RELIGIOSO" {% if evento.categoria == 'RELIGIOSO' %}selected{% endif %}>Religioso</option>
 
-        {% if evento.imagem %}
-            <p>Imagem atual:</p>
-            <img
-                src="{{ evento.imagem.url }}"
-                width="250"
-            >
-        {% endif %}
+                        <option value="OUTRO" {% if evento.categoria == 'OUTRO' %}selected{% endif %}>Outro</option>
 
-        <br><br>
+                    </select>
 
-        <label>Nova Imagem</label>
-        <br>
-        <input type="file" name="imagem">
+                </div>
 
-        <br><br>
+                {% if evento.imagem %}
+                    <div class="text-center mb-3">
 
-        <button type="submit">
-            Atualizar Evento
-        </button>
+                        <p><strong>Imagem Atual</strong></p>
 
-    </form>
+                        <img
+                            src="{{ evento.imagem.url }}"
+                            class="imagem-atual"
+                            alt="{{ evento.titulo }}"
+                        >
 
-    <br>
+                    </div>
+                {% endif %}
 
-    <a href="{% url 'meus_eventos' %}">
-        Voltar
-    </a>
+                <div class="mb-3">
+                    <label class="form-label">Nova Imagem</label>
+
+                    <input
+                        type="file"
+                        name="imagem"
+                        class="form-control"
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-atualizar"
+                >
+                    Atualizar Evento
+                </button>
+
+            </form>
+
+            <div class="botoes">
+
+                <a href="{% url 'meus_eventos' %}"
+                   class="btn btn-voltar">
+                    Voltar
+                </a>
+
+                <a href="{% url 'home' %}"
+                   class="btn btn-home">
+                    Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
 </html>

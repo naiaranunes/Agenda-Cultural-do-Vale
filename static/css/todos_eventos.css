@@ -1,0 +1,40 @@
+body{
+    background-color: #e9f2f2;
+}
+
+.titulo{
+    text-align: center;
+    color: #7BA9A8;
+    margin-bottom: 10px;
+}
+
+.subtitulo{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card{
+    border: none;
+    border-radius: 12px;
+}
+
+.card-img-top{
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-body h4{
+    color: #5e8e8d;
+    margin-bottom: 15px;
+}
+
+.btn-home{
+    background-color: #7BA9A8;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-home:hover{
+    background-color: #5e8e8d;
+    color: white;
+}

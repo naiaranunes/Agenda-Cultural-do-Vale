@@ -59,10 +59,11 @@ def login(request):
         print(user)
         if user:
             login_django(request, user)
-            return redirect('plataforma')
+            return redirect('home')
         else:
             return HttpResponse('email ou senha invalidos')
 @login_required(login_url="/auth/login/")
+
 def plataforma(request):
     return render(request, 'plataforma.html')
 
@@ -74,11 +75,13 @@ def sair(request):
 
 def home(request):
 
-    eventos = Evento.objects.all()
+    if request.user.is_authenticated and request.user.is_staff:
+        eventos = Evento.objects.all()
+    else:
+        eventos = Evento.objects.all()
 
     return render(
         request,
         'home.html',
         {'eventos': eventos}
     )
-
